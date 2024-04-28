@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="DataCollide.PageResult"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DataCollide"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <RelativePanel>
+            <RelativePanel Name="RpStatus"
+                           RelativePanel.AlignLeftWithPanel="True"
+                           RelativePanel.AlignRightWithPanel="True"
+                           Margin="10">
+                <Button Name="BtnStartMatch">
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <FontIcon Glyph="&#xE768;" FontSize="15" VerticalAlignment="Center"></FontIcon>
+                        <TextBlock VerticalAlignment="Center" Margin="5 0 0 0">开始匹配</TextBlock>
+                    </StackPanel>
+                </Button>
+                <ProgressBar Name="PbProcess" 
+                             RelativePanel.RightOf="BtnStartMatch" 
+                             RelativePanel.AlignRightWithPanel="True" 
+                             Value="50"
+                             IsIndeterminate="True"
+                             Maximum="100" 
+                             Margin="20 15 20 5"
+                             Minimum="0"></ProgressBar>
+                <StackPanel RelativePanel.Below="PbProcess" 
+                            RelativePanel.AlignLeftWith="PbProcess"
+                            Margin="20 0 0 0"
+                            Orientation="Horizontal">
+                    <TextBlock Name="TbProcessPercent">0</TextBlock>
+                    <TextBlock Margin="0 0 5 0">%:</TextBlock>
+                    <TextBlock Name="TbProcessStatus">就绪</TextBlock>
+                </StackPanel>
+                
+            </RelativePanel>
+            <RelativePanel Name="SpSave"
+                           Margin="10"
+                           RelativePanel.AlignBottomWithPanel="True"
+                           RelativePanel.AlignLeftWithPanel="True"
+                           RelativePanel.AlignRightWithPanel="True">
+                <SplitButton RelativePanel.AlignRightWithPanel="True">
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <FontIcon Glyph="&#xE74E;" FontSize="15" VerticalAlignment="Center"></FontIcon>
+                        <TextBlock VerticalAlignment="Center" Margin="5 0 0 0">导出结果</TextBlock>
+                    </StackPanel>
+                    <SplitButton.Flyout>
+                        <MenuFlyout>
+                            <ToggleMenuFlyoutItem IsChecked="True">导出为单Excel文件（单Sheet多列）</ToggleMenuFlyoutItem>
+                            <ToggleMenuFlyoutItem>导出为单Excel文件（多个Sheet）</ToggleMenuFlyoutItem>
+                            <ToggleMenuFlyoutItem>导出为多个Excel文件</ToggleMenuFlyoutItem>
+                        </MenuFlyout>
+                    </SplitButton.Flyout>
+                </SplitButton>
+            </RelativePanel>
+            <Grid RelativePanel.Below="RpStatus"
+                  RelativePanel.Above="SpSave"
+                  RelativePanel.AlignLeftWithPanel="True"
+                  RelativePanel.AlignRightWithPanel="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <RelativePanel RelativePanel.AlignLeftWithPanel="True"
+                               RelativePanel.AlignRightWithPanel="True"
+                               Margin="5 0 5 0">
+                    <TextBlock Name="TbTitleBoth" FontSize="30" Margin="0 5">表A、B共有</TextBlock>
+                    <ListBox RelativePanel.Below="TbTitleBoth"
+                             RelativePanel.AlignLeftWithPanel="True"
+                             RelativePanel.AlignRightWithPanel="True"
+                             RelativePanel.AlignBottomWithPanel="True"
+                             Background="White"></ListBox>
+                </RelativePanel>
+                <RelativePanel Grid.Column="1"
+                               RelativePanel.AlignLeftWithPanel="True"
+                               RelativePanel.AlignRightWithPanel="True"
+                               Margin="5 0 5 0">
+                    <TextBlock Name="TbTitleOnlyA" FontSize="30" Margin="0 5">仅表A有</TextBlock>
+                    <ListBox RelativePanel.Below="TbTitleOnlyA"
+                             RelativePanel.AlignLeftWithPanel="True"
+                             RelativePanel.AlignRightWithPanel="True"
+                             RelativePanel.AlignBottomWithPanel="True"
+                             Background="White"></ListBox>
+                </RelativePanel>
+                <RelativePanel Grid.Column="2"
+                               RelativePanel.AlignLeftWithPanel="True"
+                               RelativePanel.AlignRightWithPanel="True"
+                               Margin="5 0 5 0">
+                    <TextBlock Name="TbTitleOnlyB" FontSize="30" Margin="0 5">仅表B有</TextBlock>
+                    <ListBox RelativePanel.Below="TbTitleOnlyB"
+                             RelativePanel.AlignLeftWithPanel="True"
+                             RelativePanel.AlignRightWithPanel="True"
+                             RelativePanel.AlignBottomWithPanel="True"
+                             Background="White"></ListBox>
+                </RelativePanel>
+            </Grid>
+        </RelativePanel>
+    </Grid>
+</Page>

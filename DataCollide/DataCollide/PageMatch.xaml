@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="DataCollide.PageMatch"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DataCollide"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Pivot>
+            <PivotItem Header="预处理">
+                <ScrollView>
+                    <StackPanel Margin="10">
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center">匹配模型：</TextBlock>
+                            <ComboBox Width="120">
+                                <ComboBoxItem>精确匹配</ComboBoxItem>
+                                <ComboBoxItem>模糊匹配</ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+                        <CheckBox Margin="0 5">去前后空格(Trim)</CheckBox>
+                        <StackPanel Background="LightGray" Margin="0 5">
+                            <TextBlock FontWeight="Bold" Margin="5 10 0 5">数据筛选</TextBlock>
+                            <CheckBox Margin="5 0">丢弃空值</CheckBox>
+                            <CheckBox Name="CbEnableRegex" Margin="5 0">启用正则匹配</CheckBox>
+                            <StackPanel Margin="5 0" Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center">正则表达式：</TextBlock>
+                                <TextBox Width="150" IsEnabled="{Binding ElementName=CbEnableRegex, Path=IsChecked}"></TextBox>
+                            </StackPanel>
+                            <TextBlock TextWrapping="Wrap" Margin="5 5 5 10">注意：被筛选掉的数据不会参与匹配，所以不会出现在结果的任何一栏，若需定义失配方法，请转到“匹配算法”模块进行编写。</TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Background="LightGray" Margin="0 5">
+                            <TextBlock FontWeight="Bold" Margin="5 10 0 5">浮点设置</TextBlock>
+                            <CheckBox Name="CbEnableRound" Margin="5 0">四舍五入小数</CheckBox>
+                            <StackPanel Margin="5 0 5 10" Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center">小数位数：</TextBlock>
+                                <NumberBox Width="100" IsEnabled="{Binding ElementName=CbEnableRound, Path=IsChecked}"></NumberBox>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollView>
+                
+            </PivotItem>
+            <PivotItem Header="哈希算法">
+                <RelativePanel Margin="10">
+                    <CheckBox Name="CbEnableHash">启用哈希算法</CheckBox>
+                    <CommandBar Name="CbaHashEdit"
+                                IsEnabled="{Binding ElementName=CbEnableHash, Path=IsChecked}"
+                                RelativePanel.Below="CbEnableHash"
+                                RelativePanel.AlignLeftWithPanel="True"
+                                RelativePanel.AlignRightWithPanel="True">
+                        <AppBarButton Icon="Edit" Label="插入示例代码"></AppBarButton>
+                        <AppBarButton Icon="Play" Label="调试"></AppBarButton>
+                    </CommandBar>
+                    <RichEditBox RelativePanel.Below="CbaHashEdit"
+                                 IsEnabled="{Binding ElementName=CbEnableHash, Path=IsChecked}"
+                                 RelativePanel.AlignLeftWithPanel="True"
+                                 RelativePanel.AlignRightWithPanel="True"
+                                 RelativePanel.AlignBottomWithPanel="True">
+                        
+                    </RichEditBox>
+                </RelativePanel>
+            </PivotItem>
+            <PivotItem Header="匹配算法">
+                <RelativePanel Margin="10">
+                    <CheckBox Name="CbEnableMatch">启用匹配算法</CheckBox>
+                    <CommandBar Name="CbaMatchEdit"
+                                IsEnabled="{Binding ElementName=CbEnableMatch, Path=IsChecked}"
+                                RelativePanel.Below="CbEnableMatch"
+                                RelativePanel.AlignLeftWithPanel="True"
+                                RelativePanel.AlignRightWithPanel="True">
+                        <AppBarButton Icon="Edit" Label="插入示例代码"></AppBarButton>
+                        <AppBarButton Icon="Play" Label="调试"></AppBarButton>
+                    </CommandBar>
+                    <RichEditBox RelativePanel.Below="CbaMatchEdit"
+                                 IsEnabled="{Binding ElementName=CbEnableMatch, Path=IsChecked}"
+                                 RelativePanel.AlignLeftWithPanel="True"
+                                 RelativePanel.AlignRightWithPanel="True"
+                                 RelativePanel.AlignBottomWithPanel="True">
+
+                    </RichEditBox>
+                </RelativePanel>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</Page>
